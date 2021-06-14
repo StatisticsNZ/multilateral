@@ -1,0 +1,170 @@
+---
+title: "Multilateral"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{multilateral}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width=8
+)
+```
+
+
+
+```{r setup}
+#devtools::install_github("MjStansfi/multilateral")
+library(multilateral)
+library(ggplot2)
+```
+
+## Show case of index methods you can apply
+
+The package provides two lazily loaded datasets, they are 'turvey' and 'synthetic_gfk'. The first dataset provides price and quantity information for products with a unique ID. The second dataset provides price and quantity information for products with a unique ID, however it also includes de-identified characteristics.
+
+Note for this example we do not provide a window length, therefore the index is calculated over the whole dataset.
+
+```{r turvey str}
+str(turvey)
+```
+
+```{r turvey multilat, echo=TRUE, error=FALSE, fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
+index_methods <- c("FEWS","GEKS-T","GEKS-J","GEKS-F")
+
+start_run_time <- Sys.time()
+turvey_multilats <- lapply(index_methods, function(index_method){
+  
+  
+  temp_index <- multilateral(period = turvey$month,
+                             id = turvey$commodity,
+                             price = turvey$price,
+                             quantity = turvey$quantity,
+                             index_method = index_method)
+  
+  #For identification in plot
+  temp_index$index$type <- index_method
+  
+  return(temp_index$index)  
+})
+end_run_time <- Sys.time()
+
+
+turvey_multilats <- do.call(rbind,turvey_multilats)
+
+plot <- ggplot(turvey_multilats)+geom_line(aes(x = period, y = index, colour = type))
+
+print(plot)
+```
+Below indicates the time taken to run all four index methods above, highlighting efficieny of calculation
+```{r run_time}
+print(end_run_time-start_run_time)
+```
+
+
+### Data sources with features
+
+
+
+```{r synthetic gfk}
+str(synthetic_gfk)
+```
+
+Now we wrangle this into the necessary format, that is a unique observation for any given period.
+
+```{r wrangle, error=FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+
+
+synthetic_gfk <- synthetic_gfk%>%
+  group_by(month_num,prodid_num)%>%
+  mutate(quantity = sum(quantity),
+         value = sum(value))%>%
+  ungroup()%>%
+  unique
+
+#Calculate the unit value (price)
+synthetic_gfk$uv <- synthetic_gfk$value/synthetic_gfk$quantity
+
+#Extract data.frame containing features of interest
+features <-synthetic_gfk[,grepl("char",colnames(synthetic_gfk))]
+```
+
+Once the dataframe is in the correct format we can run it through the main function with index_method set to ‘GEKS-IT’.
+
+GEKS-IT still requires a product id becauseeeeeee
+
+```{r run itrygeks, echo=TRUE,warning=FALSE,message=FALSE,error=FALSE, results='hide',fig.keep='all'}
+
+itrygeks_index <- multilateral(period = synthetic_gfk$month_num,
+                               id = synthetic_gfk$prodid_num, 
+                               price = synthetic_gfk$uv,
+                               quantity = synthetic_gfk$quantity,
+                               features = features,
+                               splice_method = "geomean",
+                               index_method = "GEKS-IT")
+
+#For identification in plot
+itrygeks_index$index$type <- "itrygeks"
+```
+Alternatively we could run a basic hedonic model, which does not require a unique ID.
+```{r run hedonic, echo=TRUE,warning=FALSE,message=FALSE,error=FALSE, results='hide',fig.keep='all'}
+
+#Note no unique product ID
+
+hedonic_index <- multilateral(period = synthetic_gfk$month_num,
+                              price = synthetic_gfk$uv,
+                              quantity = synthetic_gfk$quantity,
+                              features = features,
+                              splice_method = "geomean",
+                              index_method = "hedonic")
+
+
+#For identification in plot
+hedonic_index$index$type <- "hedonic"
+```
+
+```{r plot features, echo=TRUE,warning=FALSE,message=FALSE,error=FALSE, results='hide',fig.keep='all'}
+feature_indexes <- rbind(itrygeks_index$index,hedonic_index$index)
+
+plot <- ggplot(feature_indexes)+geom_line(aes(x = period, y = index, colour = type))
+
+print(plot)
+```
+
+
+## Show case of splice methods you can apply
+
+Here we introduce a window length which therefore requires splicing
+
+```{r turvey splice, echo=TRUE,warning=FALSE,message=FALSE,error=FALSE, results='hide',fig.keep='all'}
+
+splice_methods <- c("geomean","geomean_short","window","movement","half")
+turvey_splices <- lapply(splice_methods, function(splice_method){
+  
+  
+  temp_index <- multilateral(period = turvey$month,
+                             price = turvey$price,
+                             id = turvey$commodity,
+                             quantity = turvey$quantity,
+                             window_length = 13,
+                             splice_method = splice_method,
+                             index_method = "FEWS")
+  
+  temp_index$index$type <- splice_method
+  
+  return(temp_index$index)  
+})
+
+turvey_splices <- do.call(rbind,turvey_splices)
+
+plot <- ggplot(turvey_splices)+geom_line(aes(x = period, y = index, colour = type))
+
+print(plot)
+```

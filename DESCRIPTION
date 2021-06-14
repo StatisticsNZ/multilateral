@@ -1,0 +1,27 @@
+Package: multilateral
+Type: Package
+Title: Multilateral
+Version: 2.0.3
+Authors@R: c(person("Matthew", "Stansfield", 
+                    email = "m.stansfield85@gmail.com",
+                    role = c("aut", "cre")))
+Description: Flexible, efficient implementation of multilateral index calculations 
+License: GPL-3 | file LICENSE 
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown,
+    devtools,
+    dplyr,
+    ggplot2
+VignetteBuilder: knitr
+Imports:
+    assertive,
+    data.table,
+    fastmatch,
+    snow,
+    yaml,
+    MatrixModels

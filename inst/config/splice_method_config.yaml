@@ -1,0 +1,8 @@
+splice_method:
+  - geomean
+  - window
+  - movement
+  - geomean_short
+  - half
+  - fbew
+  - fbmw

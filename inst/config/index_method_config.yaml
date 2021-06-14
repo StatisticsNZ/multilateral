@@ -1,0 +1,91 @@
+TPD:
+  description: >
+    Time Product Dummy (TPD), also known as Fixed Effects Window Splice (FEWS)
+
+    The TPD approach models price against time and a unique ID for each product, where the product id can be seen as representing the 'bundles' of
+    all the price-determining characteristics (features) of that product, to produce a fully quality-adjusted price index from the parameters estimated for time.
+    A new product must have at least two observations before it is non-trivially incorporated into the calculation, which means that a splice method
+    other than the (latest) movement splice must be used, to ensure that the index isn't biased away from the impact of new products. For example, the window splice
+    which is the original formulation of the method presented as the FEWS index
+
+  requires_id: yes
+  requires_features: no
+  requires_quantity: no
+  requires_weight: yes
+  can_restrict_to_matched_sample: no
+
+TDH:
+  description: >
+    Time Dummy Hedonic (TDH)
+
+    The TDH approach models price against time and product characteristics (features), to produce a fully quality-adjusted price index from the parameters estimated for time.
+
+  requires_id: no
+  requires_features: yes
+  requires_quantity: no
+  requires_weight: yes
+  can_restrict_to_matched_sample: no
+
+GEKS-J:
+  description: >
+    GEKS Jevons (GEKS-J)
+
+    The GEKS method is the product of many bilateral comparisons that maximises the number of paired price points while being free of chain drift.
+    The GEKS-J is a variation of the GEKS that uses a bilateral Jevons index for all bilateral index calculations.
+
+  requires_id: yes
+  requires_features: no
+  requires_quantity: no
+  requires_weight: no
+  can_restrict_to_matched_sample: yes
+
+GEKS-T:
+  description: >
+    GEKS Tornqvist (GEKS-T)
+
+    The GEKS method is the product of many bilateral comparisons that maximises the number of paired price points while being free of chain drift.
+    The GEKS-T is a variation of the GEKS that uses a bilateral Tornqvist index for all bilateral index calculations.
+
+  requires_id: yes
+  requires_features: no
+  requires_quantity: yes
+  requires_weight: no
+  can_restrict_to_matched_sample: yes
+
+GEKS-F:
+  description: >
+    GEKS Tornqvist (GEKS-T)
+
+    The GEKS method is the product of many bilateral comparisons that maximises the number of paired price points while being free of chain drift.
+    The GEKS-F is a variation of the GEKS that uses a bilateral Fisher index for all bilateral index calculations.
+
+  requires_id: yes
+  requires_features: no
+  requires_quantity: yes
+  requires_weight: no
+  can_restrict_to_matched_sample: yes
+
+GEKS-IT:
+  description: >
+    GEKS Imputation Tornqvist (GEKS-IT), also known as the ITRYGEKS (Imputation Tornqvist Rolling Year GEKS)
+
+    The GEKS method is the product of many bilateral comparisons that maximises the number of paired price points while being free of chain drift.
+    The GEKS-IT is a variation of the GEKS that uses a bilateral 'imputation Tornqvist' (regression based) index for all bilateral index calculations.
+
+  requires_id: yes
+  requires_features: yes
+  requires_quantity: yes
+  requires_weight: no
+  can_restrict_to_matched_sample: yes
+
+GK:
+  description: >
+    Gheary Khamis (GK)
+
+    The GK method uses a fixed based and an extending window to ...
+
+  requires_id: yes
+  requires_features: no
+  requires_quantity: yes
+  requires_weight: no
+  can_restrict_to_matched_sample: yes
