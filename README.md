@@ -7,7 +7,13 @@ The multilateral package provides one key function, that is
 `multilateral()`. The user provides the necessary attributes of a
 dataset to calculate their choice of multilateral methods.
 
-See vignette for further information.
+See
+[vignette](https://htmlpreview.github.io/?https://github.com/MjStansfi/multilateral/blob/main/doc/multilateral.html)
+for further information.
+
+For some specific index calculation methods this package has been
+heavily influenced by Graham White’s [IndexNumR
+package](https://github.com/grahamjwhite/IndexNumR).
 
 ## Installation
 
@@ -98,18 +104,21 @@ revision factor vs latest movement
 ``` r
 library(dplyr)
 
+#Period of interest
 splice_detail <- tpd_index$splice_detail[period=="1973-02-28"]
 
+#Log information to determine contribution
 lwm_log <- log(splice_detail$latest_window_movement)
 rf_log <- log(splice_detail$revision_factor)
 sum_log <- sum(lwm_log+rf_log)
 
 lwm_contrib <- lwm_log/sum_log
 rf_contrib <- rf_log/sum_log
-library(ggplot2)
 
-# Grouped
-ggplot(mapping = aes(fill=c("Latest movement","Revision factor"),y=c(lwm_contrib,rf_contrib),x="1973-02-28"))+
+
+ggplot(mapping = aes(fill=c("Latest movement","Revision factor"),
+                     y=c(lwm_contrib,rf_contrib),
+                     x="1973-02-28"))+
   geom_bar(position="stack", stat="identity", width = 0.2)+
   theme_bw()+
   xlab("Date")+
@@ -121,7 +130,7 @@ ggplot(mapping = aes(fill=c("Latest movement","Revision factor"),y=c(lwm_contrib
 ![](man/figures/README-visualise%20contrib-1.png)<!-- -->
 
 The `index_windows` returns all individual windows indexes before they
-were spliced. Below shows a rough way of seeing them overlap
+were spliced. Below shows how you could (roughly) visualise this data
 
 ``` r
 library(dplyr)

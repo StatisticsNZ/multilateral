@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 The multilateral package provides one key function, that is `multilateral()`.
 The user provides the necessary attributes of a dataset to calculate their choice of multilateral methods.
 
-See vignette for further information.
+See [vignette](https://htmlpreview.github.io/?https://github.com/MjStansfi/multilateral/blob/main/doc/multilateral.html) for further information.
 
 For some specific index calculation methods this package has been heavily influenced by Graham White's [IndexNumR package](https://github.com/grahamjwhite/IndexNumR). 
 
