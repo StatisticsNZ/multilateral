@@ -25,6 +25,8 @@ library(multilateral)
 
 ## Usage
 
+See bottom for all index and splice methods.
+
 ``` r
 library(multilateral)
 library(ggplot2)
@@ -152,3 +154,429 @@ print(windows_plot)
 ```
 
 ![](man/figures/README-windows-1.png)<!-- -->
+
+## Options
+
+<table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+Method
+
+</th>
+
+<th style="text-align:left;">
+
+Requires ID
+
+</th>
+
+<th style="text-align:left;">
+
+Requires Features
+
+</th>
+
+<th style="text-align:left;">
+
+Requires Quantity
+
+</th>
+
+<th style="text-align:left;">
+
+Requires Weight
+
+</th>
+
+<th style="text-align:left;">
+
+Can Restrict to Matched Sample
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+TPD
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+TDH
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+GEKS-J
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+GEKS-T
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+GEKS-F
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+GEKS-IT
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+GK
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+<td style="text-align:left;">
+
+FALSE
+
+</td>
+
+<td style="text-align:left;">
+
+TRUE
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+splice\_method
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+geomean
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+window
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+movement
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+geomean\_short
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+half
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+fbew
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+fbmw
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>

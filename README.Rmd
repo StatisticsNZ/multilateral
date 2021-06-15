@@ -1,5 +1,6 @@
 ---
   output: github_document
+  always_allow_html: true
 ---
 
 
@@ -35,6 +36,8 @@ library(multilateral)
 ```
 
 ## Usage
+
+See bottom for all index and splice methods.
 
 ```{r example,echo=TRUE,warning=FALSE,message=FALSE,error=FALSE, results='hide',fig.keep='all'}
 library(multilateral)
@@ -120,4 +123,31 @@ windows_plot <- ggplot(index_windows)+
   theme_bw()
 
 print(windows_plot)
+```
+
+
+## Options
+
+```{r table summary, echo=FALSE, message = FALSE}
+#Could re do this by method
+library(dplyr)
+library(kableExtra)
+index_method_config <- yaml::read_yaml(system.file("config","index_method_config.yaml", package = "multilateral"))
+splice_method_config <- yaml::read_yaml(system.file("config","splice_method_config.yaml", package = "multilateral"))
+
+
+methods <- names(index_method_config)
+summary <- lapply(methods,function(x){index_method_config[[x]]})
+summary <- as.data.frame(do.call(cbind, summary)) 
+summary <- data.table::rbindlist(summary)
+summary[,description:=NULL]
+summary$Method <- methods
+
+colnames(summary) <- c("Requires ID","Requires Features","Requires Quantity","Requires Weight","Can Restrict to Matched Sample","Method")
+summary <- summary[,c("Method","Requires ID","Requires Features","Requires Quantity","Requires Weight","Can Restrict to Matched Sample")]
+
+knitr::kable(summary) %>%
+  kableExtra::kable_styling(font_size = 12)
+knitr::kable(as.data.frame(splice_method_config)) 
+
 ```

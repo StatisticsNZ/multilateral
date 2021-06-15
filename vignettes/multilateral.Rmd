@@ -191,15 +191,13 @@ print(plot)
 
 ## Why this package
 
-There are a few reasons this package was built. It is good for someone within the NZ Stats agency to fully understand how 
-the building blocks of the calculation occurs, this is a fully transparent system, and not a black box. The methods available are those that Stats NZ are either using or intending to explore the use of.
+* This package is fast relative to other available packages 
+* This package allows flexibility of user input
+* This package has the flexibility to incorporate new methods if needed
+* The methods available are those that Stats NZ are either using or intending to explore the use of
+* Building own package brings transparency and understanding to methods and nature of the functions
 
-The general things that separate this package are 
-
-* Speed
-* Flexibility
-
-Below we compare the PriceIndices, IndexNumR, and multilateral package looking at how you would calculate the same thing and comparing the speeds.
+Below we compare the PriceIndices, IndexNumR, and multilateral package. We look at how you would calculate the same index, and how the speeds compare.
 
 ```{r results across package, echo=TRUE,warning=FALSE,message=FALSE,error=FALSE, results='hide',fig.keep='all'}
 library(multilateral)
@@ -308,6 +306,8 @@ turvey_tpd_IndexNumR <- function(){WTPDIndex(turvey,
 ```{r microbenchmark, echo=TRUE,warning=FALSE,message=FALSE,error=FALSE, results='hide',fig.keep='all'}
 library(microbenchmark)
 #Converted to function, easier to see results
+#Removed priceindices as too slow > 5min
+
 speed_geks <- microbenchmark(turvey_geks_multilateral(),
                              # turvey_geks_priceindices(),
                              turvey_geks_IndexNumR(),
