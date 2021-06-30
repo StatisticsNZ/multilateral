@@ -7,53 +7,51 @@
 multilateral(period, price, index_method, check_inputs_ind = TRUE, ...)
 }
 \arguments{
-\item{period}{vector of the periods at which price observations were made. \cr
+\item{period}{vector of the periods corresponding to price observations. \cr
 NOTE: \code{period} must be of class Date or numeric.}
 
-\item{price}{vector of prices for the same vector of periods}
+\item{price}{vector of prices}
 
 \item{index_method}{The index method of choice}
 
-\item{...}{All other possible arguments, see details}
+\item{check_inputs_ind}{logical, whether to check inputs or not}
 
-\item{check_input_ind}{single number for length of windows of the data that}
+\item{...}{All other possible arguments, see details}
 }
 \description{
-A flexible implementation of multilateral price index calculations for
-scanner data. This function can be applied on any dataset where a key attributes exist (depending on method).
-Those are in general terms a period, ID, price, and quantity. It will allow for extension of the method
-by the use of calculation over a window of time and splicing them together.
+A flexible implementation of multilateral price index calculation for scanner
+data. This function can be applied on any dataset where a key attributes
+exist (depending on method). Those are in general terms a period, ID, price,
+and quantity. It will allow for extension of the method by the use of
+calculation over a window of time and splicing them together.
 }
 \details{
 The function takes vectors for each of the inputs. It is important to note
-that the \code{period} argument must be of numeric or Date class. This is because
-the order of the dates matters. \cr \cr
-The function also has the capability to run in parallel, using the
-\code{num_cores} argument. Note that for smaller datasets using non-parallel
-code is often faster than using parallelisation due to the overhead
-associated with dividing the job across multiple processors.
+that the \code{period} argument must be of numeric or Date class. This is
+because the order of the dates matters. \cr \cr The function also has the
+capability to run in parallel, using the \code{num_cores} argument. Note that
+for smaller datasets using non-parallel code is often faster than using
+parallelisation due to the overhead associated with dividing the job across
+multiple cores.
 
-\code{...} represents all other possible arguments the user can provide, they include
-id,
-quantity,
-weight,
-features,
-splice_method,
-window_length,
+\code{...} represents all other possible arguments the user can provide, they
+include: id, quantity, weight, features, splice_method, window_length,
 num_cores
 
-\code{index_method} can be one of 'TPD', 'TDH', 'GEKS-J','GEKS-F','GEKS-T','GEKS-IT', or 'GK'
-you can view the configuration file found under inst/config/index_method_config for more information
+\code{index_method} can be one of 'TPD', 'TDH',
+'GEKS-J','GEKS-F','GEKS-T','GEKS-IT', or 'GK' you can view the configuration
+file found under inst/config/index_method_config for more information
 
-\code{splice_method} can be one of 'half','window','movement','geomean', or 'geomean_short'
-you can view the configuration file found under inst/config/splice_method_config for more information
+\code{splice_method} can be one of 'half','window','movement','geomean', or
+'geomean_short' you can view the configuration file found under
+inst/config/splice_method_config for more information
 }
 \examples{
 tpd_index <- multilateral(period = turvey$month,
-id = turvey$commodity,
-price = turvey$price,
-quantity = turvey$quantity,
-splice_method = "geomean",
-window_length = 13,
-index_method = "TPD")
+                          id = turvey$commodity,
+                          price = turvey$price,
+                          quantity = turvey$quantity,
+                          splice_method = "geomean",
+                          window_length = 13,
+                          index_method = "TPD")
 }

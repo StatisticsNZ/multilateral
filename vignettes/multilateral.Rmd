@@ -7,8 +7,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -16,10 +14,6 @@ knitr::opts_chunk$set(
   fig.width=8
 )
 ```
-
-
-
-
 
 ## Overview
 
@@ -85,12 +79,14 @@ plot <- ggplot(turvey_multilats)+geom_line(aes(x = period, y = index, colour = t
 print(plot)
 ```
 
-Below indicates the time taken to run all four index methods above, highlighting efficieny of calculation
+Below indicates the time taken to run all four index methods above, highlighting efficiency of calculation
 ```{r run_time}
 print(end_run_time-start_run_time)
 ```
 
 ### Data sources with features
+
+*The above methods could also be applied to this dataset*
 
 ```{r synthetic gfk}
 str(synthetic_gfk)
@@ -115,7 +111,7 @@ synthetic_gfk$uv <- synthetic_gfk$value/synthetic_gfk$quantity
 features <-synthetic_gfk[,grepl("char",colnames(synthetic_gfk))]
 ```
 
-Once the dataframe is in the correct format we can run it through the main function with index_method set to ‘GEKS-IT’.
+Once the dataframe is in the correct format we can run it through the main function with index_method set to ‘GEKS-IT’ and provide a features argument, containing the dataframe of features.
 
 Note GEKS-IT still requires a product id.
 
@@ -226,7 +222,7 @@ turvey_mod <- turvey%>%select(time = month,
 # turvey_priceindices <- geks_splice(turvey_mod, "1970-01", "1973-12", 13, splice = "mean", interval = T)
 
 
-#---------------------#PriceIndices package
+#---------------------#IndexNumR package
 
 #Requires time to be a sequential numeric vector
 
@@ -281,7 +277,7 @@ turvey_geks_priceindices <- function(){geks_splice(turvey_mod, "1970-01", "1973-
 
 turvey_tpd_priceindices <- function(){tpd_splice(turvey_mod, "1970-01", "1973-12", 13, splice = "mean", interval = T)}
 
-#---------------------#PriceIndices package
+#---------------------#IndexNumR package
 
 turvey_geks_IndexNumR <- function(){GEKSIndex(turvey,
                                          pvar = "price",
@@ -328,7 +324,7 @@ print(speed_geks)
 print(speed_tpd)
 ```
 
-Note the multilateral function also has a 'num_cores' parameter for parallelisation. Because calculation over a given window is not dependent on another, the majority of the function computation time - calculating indexes over each window - can be done in parallel. This is only applicable when there is more than one window, and only becomes noticebly quicker when dealing with larger datasets (>500k rows) as distributing to multiple cores has overheads. It is up to the user to find the correct balance.
+Note the multilateral function also has a 'num_cores' parameter for parallelisation. Because calculation over a given window is not dependent on another, the majority of the function computation time - calculating indexes over each window - can be done in parallel. This is only applicable when there is more than one window, and only becomes noticeably quicker when dealing with larger datasets (>500k rows) as distributing to multiple cores has overheads. It is up to the user to find the correct balance.
 
 ```{r parallel, eval=FALSE, include=TRUE}
 nrow(big_data)

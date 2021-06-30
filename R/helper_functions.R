@@ -115,6 +115,11 @@ check_inputs <- function(period,
          yaml::as.yaml(index_method_config[index_method]))
   }
 
+  if(!requires_features&!is.null(params$features)){
+    stop("This method does not use features, please replace the feautres with an id",
+         yaml::as.yaml(index_method_config[index_method]))
+  }
+
   if(requires_id&is.null(params$id)){
     stop("You must provide a vector of ids\n Requirements of ",
          yaml::as.yaml(index_method_config[index_method]))

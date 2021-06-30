@@ -16,7 +16,7 @@
 #'   \item{commodity}{The seasonal product, as a factor
 #'   (Apples, Grapes, Oranges, Peaches, Strawberries)}
 #'   \item{price}{The price as numeric}
-#'   \item{quantity}{The quantity of items sold in that month as an integar}}
+#'   \item{quantity}{The quantity of items sold in that month as an integer}}
 #'
 #' @source \url{https://www.ilo.org/wcmsp5/groups/public/---dgreports/---stat/documents/presentation/wcms_331153.pdf}
 "turvey"
@@ -37,7 +37,7 @@
 #'   \item{month_num}{Month number, 0-25}
 #'   \item{char1-11}{Product characteristics}
 #'   \item{prodid_num}{Product identifier, created from unique characteristics}
-#'   \item{quantity}{The quantity of items sold in that month as an integar}
+#'   \item{quantity}{The quantity of items sold in that month as an integer}
 #'   \item{value}{Sales total (NZD)}}
 #'
 #' @source {GfK New Zealand}

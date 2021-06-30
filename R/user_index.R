@@ -94,7 +94,7 @@ multilateral <-  function(period,
   }
 
   # Get the indexes of the start of each window
-  window_st_period <- get_window_st_period(period = input_data$period_index,
+  window_st_period <- get_window_st_period(period_index = input_data$period_index,
                                        window_length = params$window_length)
 
   cat("Number of windows:", length(window_st_period), "\n")

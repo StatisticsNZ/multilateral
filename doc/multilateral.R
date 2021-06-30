@@ -162,7 +162,7 @@ turvey_mod <- turvey%>%select(time = month,
 # turvey_priceindices <- geks_splice(turvey_mod, "1970-01", "1973-12", 13, splice = "mean", interval = T)
 
 
-#---------------------#PriceIndices package
+#---------------------#IndexNumR package
 
 #Requires time to be a sequential numeric vector
 
@@ -214,7 +214,7 @@ turvey_geks_priceindices <- function(){geks_splice(turvey_mod, "1970-01", "1973-
 
 turvey_tpd_priceindices <- function(){tpd_splice(turvey_mod, "1970-01", "1973-12", 13, splice = "mean", interval = T)}
 
-#---------------------#PriceIndices package
+#---------------------#IndexNumR package
 
 turvey_geks_IndexNumR <- function(){GEKSIndex(turvey,
                                          pvar = "price",

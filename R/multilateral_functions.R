@@ -21,17 +21,17 @@ GEKS <- function(input_data,
                     feature_names = feature_names)
 
   # initiate a vector of warnings for NAs
-  if(length(tempGEK$naPairs) > 0){
-    naWarn <- paste0("1 to ",window,": ",tempGEK$naPairs,"\n")
+  if(length(tempGEK$na_pairs) > 0){
+    na_warn <- paste0("1 to ",window,": ",tempGEK$na_pairs,"\n")
   }else{
-    naWarn <- character()
+    na_warn <- character()
   }
 
   # if there were periods where there were no overlapping products then
   # print a warning
-  if(length(naWarn) > 0){
+  if(length(na_warn) > 0){
     warning(paste0("The following windows contained bilateral comparisons where no overlapping products were found: \n",
-                   "Window: Pairs \n",naWarn))
+                   "Window: Pairs \n",na_warn))
   }
 
   return(tempGEK$pgeo)
@@ -59,7 +59,7 @@ GEKS_w <- function(input_data,
   pi <- unique(input_data$period_index)
 
   # initialise a vector for storing NA pair information
-  naPairs <- character()
+  na_pairs <- character()
 
   # for every period in the window...
   for(j in 1:n){
@@ -92,7 +92,7 @@ GEKS_w <- function(input_data,
         # matches
         if(nrow(input_data_t1)==0){
           pindices[j,k] <- NA
-          naPairs <- paste0(naPairs, paste0("(",j,",",k,")"), collapse = ",")
+          na_pairs <- paste0(na_pairs, paste0("(",j,",",k,")"), collapse = ",")
         }
         else{
           # set the price and quantity vectors
@@ -127,7 +127,7 @@ GEKS_w <- function(input_data,
   # normalise to the first period
   pgeo <- pgeo/pgeo[1]
 
-  return(list(pgeo=pgeo, naPairs=naPairs))
+  return(list(pgeo=pgeo, na_pairs=na_pairs))
 }
 
 #' Time Product Dummy (TPD), also known as Fixed Effects Window Splice (FEWS)
