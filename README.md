@@ -50,9 +50,9 @@ print(plot)
 
 The function returns a list object containing
 
-  - the continuous spliced index,
-  - each individual windows index,
-  - splicing information (if applicable).
+  - `index`: the continuous spliced index,
+  - `index_windows`: each individual window’s index,
+  - `splice_detail`: splicing information.
 
 <!-- end list -->
 
@@ -78,6 +78,38 @@ str(tpd_index)
 #>   ..- attr(*, ".internal.selfref")=<externalptr>
 ```
 
+The `index_windows` returns all individual windows indexes before they
+were spliced. Below shows how you could (roughly) visualise this data
+
+``` r
+library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+
+#Get splice details to relevel each new index
+update_factor <- tpd_index$splice_detail%>%
+  mutate(update_factor  = cumprod(update_factor))%>%
+  select(window_id, update_factor)
+
+
+index_windows <- merge(tpd_index$index_windows,update_factor)
+
+index_windows <-index_windows%>%mutate(updated_index = index*update_factor)
+windows_plot <- ggplot(index_windows)+
+  geom_line(aes(x = period, y = updated_index, group = window_id, colour = window_id))+
+  theme_bw()
+
+print(windows_plot)
+```
+
+![](man/figures/README-windows-1.png)<!-- -->
+
 `splice_detail` gives the user a break down of how the given periods
 index number is made up of both a ‘revision factor’ (from splicing) and
 the latest periods movement. This can be useful for diagnostics.
@@ -101,7 +133,7 @@ head(tpd_index$splice_detail)
 ```
 
 Below shows one way in which you could visualise contribution of
-revision factor vs latest movement
+revision factor verses the latest movement.
 
 ``` r
 library(dplyr)
@@ -129,33 +161,14 @@ ggplot(mapping = aes(fill=c("Latest movement","Revision factor"),
   scale_fill_manual(values = c("#085c75","#d2ac2f"))
 ```
 
-![](man/figures/README-visualise%20contrib-1.png)<!-- -->
-
-The `index_windows` returns all individual windows indexes before they
-were spliced. Below shows how you could (roughly) visualise this data
-
-``` r
-library(dplyr)
-
-#Get splice details to relevel each new index
-update_factor <- tpd_index$splice_detail%>%
-  mutate(update_factor  = cumprod(update_factor))%>%
-  select(window_id, update_factor)
-
-
-index_windows <- merge(tpd_index$index_windows,update_factor)
-
-index_windows <-index_windows%>%mutate(updated_index = index*update_factor)
-windows_plot <- ggplot(index_windows)+
-  geom_line(aes(x = period, y = updated_index, group = window_id, colour = window_id))+
-  theme_bw()
-
-print(windows_plot)
-```
-
-![](man/figures/README-windows-1.png)<!-- -->
+![](man/figures/README-visualise-contrib-1.png)<!-- -->
 
 ## Options
+
+See
+[vignette](https://htmlpreview.github.io/?https://github.com/MjStansfi/multilateral/blob/main/doc/multilateral.html)
+for further
+information.
 
 <table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
 
@@ -166,6 +179,12 @@ print(windows_plot)
 <th style="text-align:left;">
 
 Method
+
+</th>
+
+<th style="text-align:left;">
+
+Name
 
 </th>
 
@@ -215,6 +234,12 @@ TPD
 
 <td style="text-align:left;">
 
+Time Product Dummy
+
+</td>
+
+<td style="text-align:left;">
+
 TRUE
 
 </td>
@@ -250,6 +275,12 @@ FALSE
 <td style="text-align:left;">
 
 TDH
+
+</td>
+
+<td style="text-align:left;">
+
+Time Dummy Hedonic
 
 </td>
 
@@ -295,6 +326,12 @@ GEKS-J
 
 <td style="text-align:left;">
 
+GEKS Jevons
+
+</td>
+
+<td style="text-align:left;">
+
 TRUE
 
 </td>
@@ -330,6 +367,12 @@ TRUE
 <td style="text-align:left;">
 
 GEKS-T
+
+</td>
+
+<td style="text-align:left;">
+
+GEKS Tornqvist
 
 </td>
 
@@ -375,6 +418,12 @@ GEKS-F
 
 <td style="text-align:left;">
 
+GEKS Fisher
+
+</td>
+
+<td style="text-align:left;">
+
 TRUE
 
 </td>
@@ -415,6 +464,12 @@ GEKS-IT
 
 <td style="text-align:left;">
 
+GEKS Imputation Tornqvist
+
+</td>
+
+<td style="text-align:left;">
+
 TRUE
 
 </td>
@@ -450,6 +505,12 @@ TRUE
 <td style="text-align:left;">
 
 GK
+
+</td>
+
+<td style="text-align:left;">
+
+Gheary Khamis
 
 </td>
 

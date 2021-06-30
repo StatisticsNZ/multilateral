@@ -1,4 +1,5 @@
 TPD:
+  name: "Time Product Dummy"
   description: >
     Time Product Dummy (TPD), also known as Fixed Effects Window Splice (FEWS)
 
@@ -15,6 +16,7 @@ TPD:
   can_restrict_to_matched_sample: no
 
 TDH:
+  name: "Time Dummy Hedonic"
   description: >
     Time Dummy Hedonic (TDH)
 
@@ -27,6 +29,7 @@ TDH:
   can_restrict_to_matched_sample: no
 
 GEKS-J:
+  name: "GEKS Jevons"
   description: >
     GEKS Jevons (GEKS-J)
 
@@ -40,6 +43,7 @@ GEKS-J:
   can_restrict_to_matched_sample: yes
 
 GEKS-T:
+  name: "GEKS Tornqvist"
   description: >
     GEKS Tornqvist (GEKS-T)
 
@@ -53,8 +57,9 @@ GEKS-T:
   can_restrict_to_matched_sample: yes
 
 GEKS-F:
+  name: "GEKS Fisher"
   description: >
-    GEKS Tornqvist (GEKS-T)
+    GEKS Fisher (GEKS-F)
 
     The GEKS method is the product of many bilateral comparisons that maximises the number of paired price points while being free of chain drift.
     The GEKS-F is a variation of the GEKS that uses a bilateral Fisher index for all bilateral index calculations.
@@ -66,6 +71,7 @@ GEKS-F:
   can_restrict_to_matched_sample: yes
 
 GEKS-IT:
+  name: "GEKS Imputation Tornqvist"
   description: >
     GEKS Imputation Tornqvist (GEKS-IT), also known as the ITRYGEKS (Imputation Tornqvist Rolling Year GEKS)
 
@@ -79,6 +85,7 @@ GEKS-IT:
   can_restrict_to_matched_sample: yes
 
 GK:
+  name: "Gheary Khamis"
   description: >
     Gheary Khamis (GK)
 

@@ -11,7 +11,7 @@ data frame with 176 rows and 4 variables
   \item{commodity}{The seasonal product, as a factor
   (Apples, Grapes, Oranges, Peaches, Strawberries)}
   \item{price}{The price as numeric}
-  \item{quantity}{The quantity of items sold in that month as an integar}}
+  \item{quantity}{The quantity of items sold in that month as an integer}}
 }
 \source{
 \url{https://www.ilo.org/wcmsp5/groups/public/---dgreports/---stat/documents/presentation/wcms_331153.pdf}

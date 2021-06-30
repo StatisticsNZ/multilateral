@@ -10,7 +10,7 @@ data frame with 5509 rows and 15 variables
   \item{month_num}{Month number, 0-25}
   \item{char1-11}{Product characteristics}
   \item{prodid_num}{Product identifier, created from unique characteristics}
-  \item{quantity}{The quantity of items sold in that month as an integar}
+  \item{quantity}{The quantity of items sold in that month as an integer}
   \item{value}{Sales total (NZD)}}
 }
 \source{
