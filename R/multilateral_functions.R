@@ -22,7 +22,7 @@ GEKS <- function(input_data,
 
   # initiate a vector of warnings for NAs
   if(length(tempGEK$na_pairs) > 0){
-    na_warn <- paste0("1 to ",window,": ",tempGEK$na_pairs,"\n")
+    na_warn <- paste0("In window: ",tempGEK$na_pairs,"\n")
   }else{
     na_warn <- character()
   }

@@ -137,6 +137,10 @@ check_inputs <- function(period,
     assert_is_numeric(params$window_length)
   }
 
+  if(is.null(params$splice_method)&!is.null(params$window_length)){
+    stop("You must supply a splice method if you supply a window length")
+  }
+
   #--------Data
   if(!(class(period)%fin%c("Date","numeric", "integer", "double"))){
     stop("period must be class Date or numeric")
