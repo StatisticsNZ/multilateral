@@ -57,64 +57,64 @@ multilateral <-  function(period,
                           index_method,
                           check_inputs_ind = TRUE,
                           ...) {
-
+  
   params <- list(...)
-
+  
   if(check_inputs_ind){
-
+    
     check_inputs(period = period,
                  price = price,
                  index_method = index_method,
                  ...)
-
+    
   }
-
+  
   # make a data table from all of the inputs
   input_data <- data.table(period = period,
                            id = params$id,
                            price = price,
                            quantity = params$quantity,
                            weight = params$weight)
-
+  
   #include features if available (else will bind NULL)
   input_data <- cbind(input_data,params$features)
-
+  
   # It is essential that the data frame is sorted by period
   # use an if because sorting is slow, but testing is fast
   if (is.unsorted(input_data$period)){
     input_data <- setkey(input_data,period)
   }
-
+  
   # Add column which will be used as the time index variable.
   # this is to allow the period input to be either date or numeric
   input_data[,"period_index":=fmatch(period, unique(period))]
-
+  
   if(is.null(params$window_length)){
     params$window_length <- max(input_data$period_index)
   }
-
+  
   # Get the indexes of the start of each window
   window_st_period <- get_window_st_period(period_index = input_data$period_index,
-                                       window_length = params$window_length)
-
+                                           window_length = params$window_length)
+  
   cat("Number of windows:", length(window_st_period), "\n")
-
+  
   #Edge case
   if(index_method == "GK"){window_st_period <- 1}
-
+  
   num_windows <- length(window_st_period)
-
+  
   pb <- txtProgressBar(min = 0, max = length(window_st_period), style = 3)
-
+  
   if (!is.null(params$num_cores)) {
-
+    
     cat(sprintf("\nInitialising %s cores for parallelisation\n",params$num_cores))
-
+    
     # Starting Parallel =======================================================
     clust <- makeCluster(params$num_cores)
-
+    
     cat("Calculating across cores...\n")
-
+    
     indexes <- parLapply(clust, 1:length(window_st_period), function(i){
       index_model(st_period = window_st_period[i],
                   input_data = input_data,
@@ -124,17 +124,17 @@ multilateral <-  function(period,
                   index_method = index_method,
                   splice_method = params$splice_method)
     })
-
+    
     indexes <-  lapply(indexes, "[[", 1)
-
+    
     stopCluster(clust)
-
+    
   }else{
-
+    
     indexes <- lapply(1:length(window_st_period),
                       function(i){
                         setTxtProgressBar(pb, i)
-
+                        
                         index_model(st_period = window_st_period[i],
                                     input_data = input_data,
                                     feature_names = colnames(params$features),
@@ -143,32 +143,52 @@ multilateral <-  function(period,
                                     index_method = index_method,
                                     splice_method = params$splice_method)
                       })
-
+    
   }
-
+  
   close(pb)
-
-
+  
+  
   # Convert indexes from a list of data.frames to a wide dataframe
   indexes <- as.data.frame(indexes)
-
+  
   cat("\nwindow calculations complete. Splicing results together\n")
-
+  
   # index_list is a list of each window's fixed effects index
   index_list <- get_index_list (indexes = indexes,
                                 input_data = input_data,
                                 window_st_period = window_st_period,
                                 window_length = params$window_length,
                                 index_method = index_method)
-
+  
   # Make the GEKS from the fe_list
   index_df <- get_index_df (index_list = index_list,
                             window_length = params$window_length,
                             splice_method = params$splice_method)
-
-
+  
+  
   # Wrap the output in a list and return
-  list(index = index_df$index,
-       index_windows = rbindlist(index_list),
-       splice_detail = index_df$splice_detail)
+  index_all <- list(index = index_df$index,
+                    index_windows = rbindlist(index_list),
+                    splice_detail = index_df$splice_detail)
+  
+  class(index_all) <- c(class(index_all),"multilateral")
+  base::attr(index_all,"params") <- list(index_method = index_method,
+                                         window_length = params$window_length,
+                                         splice_method = params$splice_method,
+                                         check_inputs_ind = check_inputs_ind
+  )
+  
+  return(index_all)
+}
+
+
+#' @rdname multilateral
+#' @export
+print.multilateral <- function(x){
+  print(x$index)
+  cat("\n------------------------#\n\n")
+  invisible(lapply(seq_along(attributes(x)$params),function(i){
+    cat(names(attributes(x)$params[i]),":",attributes(x)$params[i][[1]],'\n')
+  }))
 }

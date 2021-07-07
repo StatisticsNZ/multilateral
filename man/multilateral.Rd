@@ -2,9 +2,12 @@
 % Please edit documentation in R/user_index.R
 \name{multilateral}
 \alias{multilateral}
+\alias{print.multilateral}
 \title{multilateral}
 \usage{
 multilateral(period, price, index_method, check_inputs_ind = TRUE, ...)
+
+\method{print}{multilateral}(x)
 }
 \arguments{
 \item{period}{vector of the periods corresponding to price observations. \cr
