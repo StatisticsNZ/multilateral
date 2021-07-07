@@ -229,6 +229,9 @@ TDH <- function(input_data){
   if(!is.null(input_data$quantity)){
     input_data[,"weight":=price*quantity]
   }
+  
+  #We do not want ID in the model
+  input_data[,"id":=NULL]
 
   # glm uses the alphabetically first id as the reference. However, if this
   # value doesn't appear in the then all other values are being compared
@@ -237,7 +240,6 @@ TDH <- function(input_data){
   input_data <- droplevels(input_data)
 
   # Run the regression
-  #TODO: What if user provides ID? Do we want to include it.
   all_coefs <-  coef(lm(logprice ~ timefact + . - price - period_index - period - weight,
                         weights = weight,
                         data = input_data))
