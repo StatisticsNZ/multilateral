@@ -239,6 +239,14 @@ TDH <- function(input_data){
   # like indexes of 10^50 from normal looking data
   input_data <- droplevels(input_data)
 
+  
+  #Even though the data as a whole may have all characteristics with more than one level
+  #In a given window this criteria may fail. To catch this it checks the number of levels
+  #for each characteristic, if it is equal to one it will be removed.
+  one_level <- sapply(input_data, nlevels)!=1
+  input_data <- input_data[,one_level,with=FALSE]
+  
+  
   # Run the regression
   all_coefs <-  coef(lm(logprice ~ timefact + . - price - period_index - period - weight,
                         weights = weight,
