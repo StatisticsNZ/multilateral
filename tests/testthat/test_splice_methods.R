@@ -2,38 +2,38 @@ context("Test splice methods")
 library(multilateral)
 
 
-#First two windows of Turvey with TPD method
+#First two windows of Turvey with TPD method, window length 13
 old_window <- c(1,
-                1.249043375,
-                1.503076003,
-                1.757604732,
-                2.081349132,
-                2.34446107,
-                2.561226171,
-                2.983380052,
-                3.216362813,
-                3.523596524,
-                3.774214392,
-                4.018404899,
-                4.286015359)
+                0.971106984,
+                0.949054291,
+                1.047073965,
+                1.308492016,
+                1.286578703,
+                1.30327077,
+                1.276206486,
+                1.105193456,
+                1.028340119,
+                1.086910614,
+                1.054583144,
+                1.107812376)
 new_window <- c(1,
-                1.201386446,
-                1.400784423,
-                1.656833211,
-                1.863508504,
-                2.037247501,
-                2.375003553,
-                2.560485253,
-                2.802786226,
-                3.005634563,
-                3.21243871,
-                3.429538798,
-                3.663962317)
+                0.976549871,
+                1.075633141,
+                1.343338214,
+                1.320139911,
+                1.337845896,
+                1.311287199,
+                1.135980815,
+                1.057137399,
+                1.118093556,
+                1.086292759,
+                1.141368481,
+                1.10690248)
 
 test_that("All splice methods work", {
-  expect_equal(round(splice_update(old_window,new_window,"geomean"),6), 1.072298)
-  expect_equal(round(splice_update(old_window,new_window,"geomean_short"),6), 1.072657)
-  expect_equal(round(splice_update(old_window,new_window,"window"),6), 1.067763)
-  expect_equal(round(splice_update(old_window,new_window,"movement"),6), 1.068354)
-  expect_equal(round(splice_update(old_window,new_window,"half"),6), 1.074735)
+  expect_equal(round(splice_update(old_window,new_window,"geomean"),6), 0.971835)
+  expect_equal(round(splice_update(old_window,new_window,"geomean_short"),6), 0.972020)
+  expect_equal(round(splice_update(old_window,new_window,"window"),6), 0.970309)
+  expect_equal(round(splice_update(old_window,new_window,"movement"),6), 0.969803)
+  expect_equal(round(splice_update(old_window,new_window,"half"),6), 0.973356)
 })
