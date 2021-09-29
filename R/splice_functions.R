@@ -66,7 +66,7 @@ geomean_short_splice <- function(old_window,new_window){
     t_accum <- c(t_accum, ((Pw1_new / Pt1_new) / (Pw_old / Pt1_old)))
   }
 
-  gm_mean(t_accum)
+  (Pw1_new / Pw_new) * gm_mean(t_accum)
 }
 
 geomean_splice <- function(old_window,new_window){
