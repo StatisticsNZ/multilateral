@@ -75,7 +75,14 @@ str(tpd_index)
 #>   ..$ revision_factor       : num [1:35] 1 1 1 1.01 1.02 ...
 #>   ..$ update_factor         : num [1:35] 0.972 1.013 1.099 1.205 0.966 ...
 #>   ..$ window_id             : int [1:35] 2 3 4 5 6 7 8 9 10 11 ...
-#>   ..- attr(*, ".internal.selfref")=<externalptr>
+#>   ..- attr(*, ".internal.selfref")=<externalptr> 
+#>  - attr(*, "class")= chr [1:2] "list" "multilateral"
+#>  - attr(*, "params")=List of 5
+#>   ..$ index_method    : chr "TPD"
+#>   ..$ window_length   : num 13
+#>   ..$ splice_method   : chr "geomean"
+#>   ..$ chain_method    : NULL
+#>   ..$ check_inputs_ind: logi TRUE
 ```
 
 The `index_windows` returns all individual windows indexes before they
@@ -633,6 +640,68 @@ fbew
 <td style="text-align:left;">
 
 fbmw
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+chain\_method
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+geomean
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+window
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+movement
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+half
 
 </td>
 
