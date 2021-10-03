@@ -133,11 +133,12 @@ library(dplyr)
 library(kableExtra)
 index_method_config <- yaml::read_yaml(system.file("config","index_method_config.yaml", package = "multilateral"))
 splice_method_config <- yaml::read_yaml(system.file("config","splice_method_config.yaml", package = "multilateral"))
+chain_method_config <- yaml::read_yaml(system.file("config","chain_method_config.yaml", package = "multilateral"))
 
 
 methods <- names(index_method_config)
 summary <- lapply(methods,function(x){index_method_config[[x]]})
-summary <- as.data.frame(do.call(cbind, summary)) 
+# summary <- as.data.frame(do.call(cbind, summary)) 
 summary <- data.table::rbindlist(summary)
 summary[,description:=NULL]
 summary$Method <- methods
@@ -148,5 +149,5 @@ summary <- summary[,c("Method","Name","Requires ID","Requires Features","Require
 knitr::kable(summary) %>%
   kableExtra::kable_styling(font_size = 12)
 knitr::kable(as.data.frame(splice_method_config)) 
-
+knitr::kable(as.data.frame(chain_method_config)) 
 ```

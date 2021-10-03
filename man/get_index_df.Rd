@@ -2,7 +2,7 @@
 % Please edit documentation in R/index_functions.R
 \name{get_index_df}
 \alias{get_index_df}
-\title{Get index df and splice information}
+\title{Get spliced index df and splice information}
 \usage{
 get_index_df(index_list, window_length, splice_method)
 }

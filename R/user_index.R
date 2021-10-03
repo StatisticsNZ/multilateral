@@ -161,11 +161,17 @@ multilateral <-  function(period,
                                 window_length = params$window_length,
                                 index_method = index_method)
   
-  # Make the GEKS from the fe_list
+  # Make the index from the index_list
+  if(!is.null(params$chain_method)){
+    index_df <- get_chain_index_df (index_list = index_list,
+                              window_length = params$window_length,
+                              chain_method = params$chain_method)
+    
+  }else{
   index_df <- get_index_df (index_list = index_list,
                             window_length = params$window_length,
                             splice_method = params$splice_method)
-  
+  }
   
   # Wrap the output in a list and return
   index_all <- list(index = index_df$index,
@@ -176,6 +182,7 @@ multilateral <-  function(period,
   base::attr(index_all,"params") <- list(index_method = index_method,
                                          window_length = params$window_length,
                                          splice_method = params$splice_method,
+                                         chain_method = params$chain_method,
                                          check_inputs_ind = check_inputs_ind
   )
   

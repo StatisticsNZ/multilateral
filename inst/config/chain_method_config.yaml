@@ -1,0 +1,5 @@
+chain_method:
+  - geomean
+  - window
+  - movement
+  - half

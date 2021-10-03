@@ -135,6 +135,36 @@ plot <- ggplot(turvey_splices)+geom_line(aes(x = period, y = index, colour = typ
 
 print(plot)
 
+## ----turvey chain, echo=TRUE,warning=FALSE,message=FALSE,error=FALSE, results='hide',fig.keep='all'----
+
+chain_methods <- c("geomean","window","movement","half")
+turvey_chains <- lapply(chain_methods, function(chain_method){
+  
+  
+  temp_index <- multilateral(period = turvey$month,
+                             price = turvey$price,
+                             id = turvey$commodity,
+                             quantity = turvey$quantity,
+                             window_length = 13,
+                             # splice_method = splice_method,
+                             chain_method = chain_method,
+                             index_method = "TPD")
+  
+  temp_index$index$type <- chain_method
+  
+  return(temp_index$index)  
+})
+
+turvey_chains <- do.call(rbind,turvey_chains)
+
+
+plot <- ggplot()+
+  geom_line(aes(x = period, y = index, colour = "chain"), data = turvey_chains[turvey_chains$type=="geomean"])+
+  geom_line(aes(x = period, y = index, colour = "splice"), data = turvey_splices[turvey_splices$type=="geomean"])+
+  ggtitle("Geomean chain compared to splice for turvey")
+
+print(plot)
+
 ## ----results across package, echo=TRUE,warning=FALSE,message=FALSE,error=FALSE, results='hide',fig.keep='all'----
 library(multilateral)
 library(IndexNumR)
@@ -159,7 +189,7 @@ turvey_mod <- turvey%>%select(time = month,
                               prices = price,
                               quantities = quantity)
 
-# turvey_priceindices <- geks_splice(turvey_mod, "1970-01", "1973-12", 13, splice = "mean", interval = T)
+turvey_priceindices <- geks_splice(turvey_mod, "1970-01", "1973-12", 13, splice = "mean", interval = T)
 
 
 #---------------------#IndexNumR package
@@ -180,83 +210,9 @@ turvey_IndexNumR <- GEKSIndex(turvey,
 
 ## ----print resluts-------------------------------------------------------
 print(str(turvey_multilateral))
-# print(str(turvey_priceindices))
+print(str(turvey_priceindices))
 print(str(turvey_IndexNumR))
 
-
-## ----microbenchmark setup, include=FALSE---------------------------------
-library(multilateral)
-library(IndexNumR)
-library(PriceIndices)
-library(dplyr)
-#---------------------#multilateral package
-turvey_geks_multilateral <- function(){multilateral(period = turvey$month,
-                                    price = turvey$price,
-                                    quantity = turvey$quantity,
-                                    id = turvey$commodity,
-                                    window_length = 13,
-                                    splice_method = "geomean",
-                                    index_method = "GEKS-F",
-                                    check_inputs_ind = T)}
-
-turvey_tpd_multilateral <- function(){multilateral(period = turvey$month,
-                                    price = turvey$price,
-                                    quantity = turvey$quantity,
-                                    id = turvey$commodity,
-                                    window_length = 13,
-                                    splice_method = "geomean",
-                                    index_method = "TPD",
-                                    check_inputs_ind = T)}
-
-#---------------------#PriceIndices package
-turvey_geks_priceindices <- function(){geks_splice(turvey_mod, "1970-01", "1973-12", 13, splice = "mean", interval = T)}
-
-
-turvey_tpd_priceindices <- function(){tpd_splice(turvey_mod, "1970-01", "1973-12", 13, splice = "mean", interval = T)}
-
-#---------------------#IndexNumR package
-
-turvey_geks_IndexNumR <- function(){GEKSIndex(turvey,
-                                         pvar = "price",
-                                         qvar = "quantity",
-                                         pervar = "month_num",
-                                         prodID = "commodity",
-                                         indexMethod = "fisher",
-                                         window = 13,
-                                         splice = "mean")}
-
-turvey_tpd_IndexNumR <- function(){WTPDIndex(turvey,
-                                         pvar = "price",
-                                         qvar = "quantity",
-                                         pervar = "month_num",
-                                         prodID = "commodity",
-                                         window = 13,
-                                         splice = "mean")}
-
-
-
-## ----microbenchmark, echo=TRUE,warning=FALSE,message=FALSE,error=FALSE, results='hide',fig.keep='all'----
-library(microbenchmark)
-#Converted to function, easier to see results
-#Removed priceindices as too slow > 5min
-
-speed_geks <- microbenchmark(turvey_geks_multilateral(),
-                             # turvey_geks_priceindices(),
-                             turvey_geks_IndexNumR(),
-                             times = 1,
-                            unit = 's')
-
-
-speed_tpd <- microbenchmark(turvey_tpd_multilateral(),
-                            # turvey_tpd_priceindices(),
-                            turvey_tpd_IndexNumR(),
-                            times = 1,
-                            unit = 's')
-
-
-## ----speed---------------------------------------------------------------
-print(speed_geks)
-print(speed_tpd)
 
 ## ----parallel, eval=FALSE, include=TRUE----------------------------------
 #  nrow(big_data)
