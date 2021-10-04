@@ -52,9 +52,10 @@ gm_mean <- function(x, na.rm = TRUE){
   if(any(x[!is.na(x)] <= 0)){
     warning("Non-positive values being ignored from supplied vector")
   }
-  if(any(is.na(x)) && na.rm){
-    warning("NA values being ignored from supplied vector")
-  }
+  
+  # if(any(is.na(x)) && na.rm){
+  #   warning("NA values being ignored from supplied vector")
+  # }
   
   #Also note this excludes any observation less than or equal to
   #zero in the calculation
