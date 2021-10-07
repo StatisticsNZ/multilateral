@@ -38,7 +38,7 @@ ITRYGEKS_t <- function(p0,p1,q0,q1,f0,f1,id0,id1){
   model_df[,which(sapply(model_df,nlevels)==1)] <- NULL #Final check of factors with 1 level
 
   #log price
-  glm_formula <- p ~ .
+  glm_formula <- p ~ . - id
 
   # Run the regression
   all_coefs <-  coef(lm(glm_formula,

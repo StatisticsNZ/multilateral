@@ -183,8 +183,9 @@ multilateral <-  function(period,
                                          window_length = params$window_length,
                                          splice_method = params$splice_method,
                                          chain_method = params$chain_method,
-                                         check_inputs_ind = check_inputs_ind
-  )
+                                         check_inputs_ind = check_inputs_ind,
+                                         matched =  params$matched)
+  
   
   return(index_all)
 }
