@@ -149,6 +149,10 @@ check_inputs <- function(period,
   #window_length is allowed to be NULL
   if(!is.null(params$window_length)){
     assert_is_numeric(params$window_length)
+    
+    if(params$window_length>length(unique(period))){
+      stop("Window length cannot be greater than the number of unique periods.")
+    }
   }
   
   if(is.null(params$splice_method)&is.null(params$chain_method)&!is.null(params$window_length)){
