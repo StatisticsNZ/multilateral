@@ -3,6 +3,7 @@
 S3method(print,multilateral)
 export(gm_mean)
 export(multilateral)
+export(splice_update)
 import(assertive)
 import(data.table)
 import(fastmatch)

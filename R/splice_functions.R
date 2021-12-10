@@ -1,3 +1,11 @@
+#' Splice update
+#'
+#' Calculate the splice factor
+#'
+#' @param old_window vector of numeric values
+#' @param new_window vector of numeric values
+#' @param splice_method Method of splicing
+#' @export
 splice_update <- function (old_window, new_window, splice_method){
 
   update_factor <- switch(splice_method,
