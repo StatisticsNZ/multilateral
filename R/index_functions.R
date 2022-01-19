@@ -36,6 +36,14 @@ index_model <- function(st_period,
                                         index_method = "GEKS-F",
                                         matched = matched),
                         
+                        "GEKS-L" = GEKS(input_data_win,
+                                        index_method = "GEKS-L",
+                                        matched = matched),
+                        
+                        "GEKS-P" = GEKS(input_data_win,
+                                        index_method = "GEKS-P",
+                                        matched = matched),
+                        
                         "GEKS-T" = GEKS(input_data_win,
                                         index_method = "GEKS-T",
                                         matched = matched),

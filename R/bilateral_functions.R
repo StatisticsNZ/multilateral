@@ -1,12 +1,10 @@
-#'GEKS Imputation Tornqvist (GEKS-IT), also known as the ITRYGEKS (Imputation
+#'Imputation Tornqvist (GEKS-IT), also known as the ITRYGEKS (Imputation
 #'Tornqvist Rolling Year GEKS)
 #'
-#'The GEKS method is the product of many bilateral comparisons that maximises
-#'the number of paired price points while being free of chain drift. The GEKS-IT
-#'is a variation of the GEKS that uses a bilateral 'imputation Tornqvist'
+#'The GEKS-IT is a variation of the GEKS that uses a bilateral 'imputation Tornqvist'
 #'(regression based) index for all bilateral index calculations.
 #' @keywords internal
-ITRYGEKS_t <- function(p0,p1,q0,q1,f0,f1,id0,id1){
+IT_t <- function(p0,p1,q0,q1,f0,f1,id0,id1){
 
   #Create then modify exp_share
   # used again later so cache it

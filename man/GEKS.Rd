@@ -9,6 +9,6 @@ GEKS(input_data, index_method, matched = NULL, feature_names = NULL)
 \description{
 The GEKS method is the product of many bilateral comparisons that maximises
 the number of paired price points while being free of chain drift. The GEKS
-has the following variations 'GEKS-F', 'GEKS-T','GEKS-J', 'GEKS-IT'
+has the following variations 'GEKS-F', 'GEKS-T','GEKS-J', 'GEKS-IT', 'GEKS-L','GEKS-P'
 }
 \keyword{internal}
