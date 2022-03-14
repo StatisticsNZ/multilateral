@@ -142,12 +142,12 @@ chain_method_config <- yaml::read_yaml(system.file("config","chain_method_config
 
 methods <- names(index_method_config)
 summary <- lapply(methods,function(x){index_method_config[[x]]})
-# summary <- as.data.frame(do.call(cbind, summary)) 
 summary <- data.table::rbindlist(summary)
 summary[,description:=NULL]
 summary$Method <- methods
 
 colnames(summary) <- c("Name","Requires ID","Requires Features","Requires Quantity","Requires Weight","Can Restrict to Matched Sample","Method")
+
 summary <- summary[,c("Method","Name","Requires ID","Requires Features","Requires Quantity","Requires Weight","Can Restrict to Matched Sample")]
 
 knitr::kable(summary) %>%
