@@ -40,7 +40,7 @@ parallelisation due to the overhead associated with dividing the job across
 multiple cores.
 
 \code{...} represents all other possible arguments the user can provide, they
-include: id, quantity, weight, features, splice_method, window_length,
+include: id, quantity, weight, features, splice_method, window_length, matched, chain_method,
 num_cores
 
 \code{index_method} can be one of 'TPD', 'TDH',
