@@ -43,7 +43,8 @@ impute_torn <- multilateral(period = synthetic_gfk$month_num,
                             features = features,
                             window_length = 13,
                             splice_method = "geomean",
-                            index_method = "GEKS-IT")
+                            index_method = "GEKS-IT",
+                            matched = TRUE)
 
 
 

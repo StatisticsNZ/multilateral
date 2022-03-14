@@ -23,7 +23,7 @@
 #' multiple cores.
 #'
 #' \code{...} represents all other possible arguments the user can provide, they
-#' include: id, quantity, weight, features, splice_method, window_length,
+#' include: id, quantity, weight, features, splice_method, window_length, matched, chain_method,
 #' num_cores
 #'
 #' \code{index_method} can be one of 'TPD', 'TDH',
@@ -192,8 +192,9 @@ multilateral <-  function(period,
 
 
 #' @rdname multilateral
+#' @param x multilateral class object
 #' @export
-print.multilateral <- function(x){
+print.multilateral <- function(x, ...){
   print(x$index)
   cat("\n------------------------#\n\n")
   invisible(lapply(seq_along(attributes(x)$params),function(i){

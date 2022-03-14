@@ -7,7 +7,7 @@
 \usage{
 multilateral(period, price, index_method, check_inputs_ind = TRUE, ...)
 
-\method{print}{multilateral}(x)
+\method{print}{multilateral}(x, ...)
 }
 \arguments{
 \item{period}{vector of the periods corresponding to price observations. \cr
@@ -20,6 +20,8 @@ NOTE: \code{period} must be of class Date or numeric.}
 \item{check_inputs_ind}{logical, whether to check inputs or not}
 
 \item{...}{All other possible arguments, see details}
+
+\item{x}{multilateral class object}
 }
 \description{
 A flexible implementation of multilateral price index calculation for scanner

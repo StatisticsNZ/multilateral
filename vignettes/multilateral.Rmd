@@ -231,7 +231,7 @@ print(plot)
 
 Below we compare the PriceIndices, IndexNumR, and multilateral package. We look at how you would calculate the same index.
 
-```{r results across package, echo=TRUE,warning=FALSE,message=FALSE,error=FALSE, results='hide',fig.keep='all'}
+```{r results across package, eval=FALSE, include=TRUE, error=FALSE, fig.keep='all', message=FALSE, warning=FALSE, results='hide'}
 library(multilateral)
 library(IndexNumR)
 library(PriceIndices)
@@ -275,7 +275,7 @@ turvey_IndexNumR <- GEKSIndex(turvey,
 
 ```
 
-```{r print resluts}
+```{r print results, eval=FALSE, include=FALSE}
 print(str(turvey_multilateral))
 print(str(turvey_priceindices))
 print(str(turvey_IndexNumR))

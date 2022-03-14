@@ -235,7 +235,9 @@ TDH <- function(input_data){
   }
   
   #We do not want ID in the model
+  if("id"%in%names(input_data)){
   input_data[,"id":=NULL]
+  }
   
   # glm uses the alphabetically first id as the reference. However, if this
   # value doesn't appear in the then all other values are being compared
