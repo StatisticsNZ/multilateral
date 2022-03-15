@@ -1,8 +1,10 @@
 
 # Multilateral <img src='man/figures/logo-v2.png' align="right" height="139" />
 
-<!-- badges: start --> [![R build
-status](https://github.com/MjStansfi/multilateral/workflows/R-CMD-check/badge.svg)](https://github.com/MjStansfi/multilateral/actions)
+<!-- badges: start --> 
+
+[![R build status](https://github.com/MjStansfi/multilateral/workflows/R-CMD-check/badge.svg)](https://github.com/MjStansfi/multilateral/actions)
+
 <!-- badges: end -->
 
 ## Overview
