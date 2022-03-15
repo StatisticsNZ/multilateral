@@ -131,7 +131,7 @@ ggplot(mapping = aes(fill=c("Latest movement","Revision factor"),
 
 See [vignette](https://htmlpreview.github.io/?https://github.com/MjStansfi/multilateral/blob/main/doc/multilateral.html) for further information.
 
-```{r table-summary, echo=FALSE, message = FALSE}
+```{r table-summary, echo=FALSE, message=FALSE, warning=FALSE}
 #Could re do this by method
 library(dplyr)
 library(kableExtra)

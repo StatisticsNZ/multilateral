@@ -175,10 +175,6 @@ See
 [vignette](https://htmlpreview.github.io/?https://github.com/MjStansfi/multilateral/blob/main/doc/multilateral.html)
 for further information.
 
-    #> Warning: package 'kableExtra' was built under R version 4.0.5
-    #> Warning in readLines(file): incomplete final line found on 'C:/Users/Mjs/
-    #> Documents/R/win-library/4.0/multilateral/config/index_method_config.yaml'
-
 <table class="table" style="font-size: 12px; margin-left: auto; margin-right: auto;">
 
 <thead>
