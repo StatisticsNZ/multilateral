@@ -25,7 +25,7 @@ NOTE: \code{period} must be of class Date or numeric.}
 }
 \description{
 A flexible implementation of multilateral price index calculation for scanner
-data. This function can be applied on any dataset where a key attributes
+data. This function can be applied on any dataset where key attributes
 exist (depending on method). Those are in general terms a period, ID, price,
 and quantity. It will allow for extension of the method by the use of
 calculation over a window of time and splicing them together.

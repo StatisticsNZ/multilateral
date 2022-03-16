@@ -275,13 +275,6 @@ turvey_IndexNumR <- GEKSIndex(turvey,
 
 ```
 
-```{r print results, eval=FALSE, include=FALSE}
-print(str(turvey_multilateral))
-print(str(turvey_priceindices))
-print(str(turvey_IndexNumR))
-
-```
-
 Note the multilateral function also has a 'num_cores' parameter for parallelisation. Because calculation over a given window is not dependent on another, the majority of the function computation time - calculating indexes over each window - can be done in parallel. This is only applicable when there is more than one window, and only becomes noticeably quicker when dealing with larger datasets (>500k rows) as distributing to multiple cores has overheads. It is up to the user to find the correct balance.
 
 ```{r parallel, eval=FALSE, include=TRUE}

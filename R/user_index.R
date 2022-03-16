@@ -1,7 +1,7 @@
 #' multilateral
 #'
 #' A flexible implementation of multilateral price index calculation for scanner
-#' data. This function can be applied on any dataset where a key attributes
+#' data. This function can be applied on any dataset where key attributes
 #' exist (depending on method). Those are in general terms a period, ID, price,
 #' and quantity. It will allow for extension of the method by the use of
 #' calculation over a window of time and splicing them together.
@@ -47,7 +47,7 @@
 #' @import data.table
 #' @import fastmatch
 #' @import assertive
-#' @import snow
+#' @import parallel
 #' @importFrom MatrixModels glm4 coef
 #' @importFrom yaml read_yaml as.yaml
 #' @importFrom stats relevel lm

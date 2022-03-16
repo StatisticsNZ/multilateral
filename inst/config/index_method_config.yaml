@@ -7,7 +7,7 @@ TPD:
     all the price-determining characteristics (features) of that product, to produce a fully quality-adjusted price index from the parameters estimated for time.
     A new product must have at least two observations before it is non-trivially incorporated into the calculation, which means that a splice method
     other than the (latest) movement splice must be used, to ensure that the index isn't biased away from the impact of new products. For example, the window splice
-    which is the original formulation of the method presented as the FEWS index
+    which is the original formulation of the method presented as the FEWS index.
 
   requires_id: yes
   requires_features: no
