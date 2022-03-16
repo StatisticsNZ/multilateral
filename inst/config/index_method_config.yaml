@@ -117,8 +117,6 @@ GK:
   description: >
     Gheary Khamis (GK)
 
-    The GK method uses a fixed based and an extending window to ...
-
   requires_id: yes
   requires_features: no
   requires_quantity: yes

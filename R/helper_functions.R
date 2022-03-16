@@ -214,6 +214,10 @@ check_inputs <- function(period,
          " of rows as the length of other variables e.g period")
   }
   
+  if(any(apply(params$features,2,is.character))){
+    warning("Some of the features provided are characters, are you sure they aren't meant to be factors?")
+  }
+  
   #check for aggregation problem
   if(requires_id){
     agg_check <- data.table(period = period,id = params$id)

@@ -238,13 +238,8 @@ TDH <- function(input_data){
   if("id"%in%names(input_data)){
   input_data[,"id":=NULL]
   }
-  
-  # glm uses the alphabetically first id as the reference. However, if this
-  # value doesn't appear in the then all other values are being compared
-  # to a number that is essentially zero. Hence you can get crazily high numbers
-  # like indexes of 10^50 from normal looking data
+
   input_data <- droplevels(input_data)
-  
   
   #Even though the data as a whole may have all characteristics with more than one level
   #In a given window this criteria may fail. To catch this it checks the number of levels
@@ -257,8 +252,8 @@ TDH <- function(input_data){
                         data = input_data))
   
   # There are coefficients returned for each time period, and each product.
-  # we are only interested in change of price wrt time - so only keep theses
-  # coefficients. Theses rownames start with timefact
+  # we are only interested in change of price due to time - so only keep theses
+  # coefficients. These rownames start with timefact
   rows_keep <- grepl(".*timefact.*", names(all_coefs))
   names(all_coefs) <- NULL
   

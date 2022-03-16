@@ -9,7 +9,6 @@ R CMD check succeeded
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* More clearly identified the copyright holders in the DESCRIPTION
-  and LICENSE files.
+* More descriptive Title
 
-* Removed dependency on superseeded package 'snow' and instead used 'parallel' 
+* Expanded description including reference to paper on methodology.
