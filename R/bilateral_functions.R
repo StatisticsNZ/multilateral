@@ -33,8 +33,8 @@ IT_t <- function(p0,p1,q0,q1,f0,f1,id0,id1){
                                     timefact = timefact))
 
   # Regression doesn't work if there is only 1 item in the time window.
-  model_df[,which(sapply(model_df,nlevels)==1)] <- NULL #Final check of factors with 1 level
-
+  model_df[,which(sapply(model_df,nlevels)<=1&sapply(model_df,is.factor))] <- NULL #Final check of factors with 1 or 0 level(s)
+  
   #log price
   glm_formula <- p ~ . - id
 
