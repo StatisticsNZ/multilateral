@@ -1,9 +1,10 @@
 
 # Multilateral <img src='man/figures/logo-v2.png' align="right" height="139" />
 
-<!-- badges: start --> 
+<!-- badges: start -->
 
-[![R build status](https://github.com/MjStansfi/multilateral/workflows/R-CMD-check/badge.svg)](https://github.com/MjStansfi/multilateral/actions)
+[![R build
+status](https://github.com/MjStansfi/multilateral/workflows/R-CMD-check/badge.svg)](https://github.com/MjStansfi/multilateral/actions)
 
 <!-- badges: end -->
 
@@ -599,52 +600,6 @@ TRUE
 
 </tr>
 
-<tr>
-
-<td style="text-align:left;">
-
-GK
-
-</td>
-
-<td style="text-align:left;">
-
-Gheary Khamis
-
-</td>
-
-<td style="text-align:left;">
-
-TRUE
-
-</td>
-
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-
-<td style="text-align:left;">
-
-TRUE
-
-</td>
-
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-
-<td style="text-align:left;">
-
-TRUE
-
-</td>
-
-</tr>
-
 </tbody>
 
 </table>
@@ -712,26 +667,6 @@ geomean\_short
 <td style="text-align:left;">
 
 half
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-fbew
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-fbmw
 
 </td>
 

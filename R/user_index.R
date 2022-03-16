@@ -27,7 +27,7 @@
 #' num_cores
 #'
 #' \code{index_method} can be one of 'TPD', 'TDH',
-#' 'GEKS-J','GEKS-F','GEKS-T','GEKS-IT', or 'GK' you can view the configuration
+#' 'GEKS-J','GEKS-F','GEKS-T', or 'GEKS-IT' you can view the configuration
 #' file found under inst/config/index_method_config for more information
 #'
 #' \code{splice_method} can be one of 'half','window','movement','geomean', or
@@ -98,10 +98,7 @@ multilateral <-  function(period,
                                            window_length = params$window_length)
   
   cat("Number of windows:", length(window_st_period), "\n")
-  
-  #Edge case
-  if(index_method == "GK"){window_st_period <- 1}
-  
+
   num_windows <- length(window_st_period)
   
   pb <- txtProgressBar(min = 0, max = length(window_st_period), style = 3)

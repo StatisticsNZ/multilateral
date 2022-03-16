@@ -111,14 +111,3 @@ GEKS-IT:
   requires_quantity: yes
   requires_weight: no
   can_restrict_to_matched_sample: yes
-
-GK:
-  name: "Gheary Khamis"
-  description: >
-    Gheary Khamis (GK)
-
-  requires_id: yes
-  requires_features: no
-  requires_quantity: yes
-  requires_weight: no
-  can_restrict_to_matched_sample: yes

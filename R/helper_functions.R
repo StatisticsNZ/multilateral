@@ -145,7 +145,7 @@ check_inputs <- function(period,
   if(!is.null(params$splice_method)&!is.null(params$chain_method)){
     stop("You cannot splice and chain indexes within the same function call, please remove one.")
   }
-
+  
   #window_length is allowed to be NULL
   if(!is.null(params$window_length)){
     assert_is_numeric(params$window_length)
@@ -214,8 +214,10 @@ check_inputs <- function(period,
          " of rows as the length of other variables e.g period")
   }
   
-  if(any(apply(params$features,2,is.character))){
-    warning("Some of the features provided are characters, are you sure they aren't meant to be factors?")
+  if(!is.null(params$features)){
+    if(any(apply(params$features,2,is.character))){
+      warning("Some of the features provided are characters, are you sure they aren't meant to be factors?")
+    }
   }
   
   #check for aggregation problem
@@ -235,17 +237,6 @@ check_inputs <- function(period,
       stop("Multiple of the same features are being observed in a single period,",
            " aggregate before continuing")
     }
-  }
-  
-  
-  #Only GK can use expanding or fixed base splice
-  if(is.null(params$splice_method)&index_method=="GK"){
-    stop("GK method requires a splice method.")
-  }
-  
-  #Only GK can use expanding or fixed base splice
-  if(!is.null(params$splice_method)&&index_method!="GK"&&params$splice_method %fin% c("fbew","fbmw")){
-    stop("Only the GK method can use the fixed base expanding/moving window, please use an alternate")
   }
   
   if(!is.null(params$num_cores)){

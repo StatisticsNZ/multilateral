@@ -55,12 +55,7 @@ index_model <- function(st_period,
                         
                         "TPD" = TPD(input_data_win),
                         
-                        "TDH" = TDH(input_data_win),
-                        
-                        "GK" = GK(input_data,
-                                  window_length = window_length,
-                                  splice_method = splice_method,
-                                  matched = matched)
+                        "TDH" = TDH(input_data_win)
   )
   
   
@@ -78,13 +73,7 @@ get_index_list <- function (indexes,
                             window_st_period,
                             window_length,
                             index_method) {
-  
-  if(index_method=="GK"){
-    indexes <- data.frame(indexes[,1])
-    window_length <- nrow(indexes)
-  }
-  
-  
+
   index_list <- vector(mode = "list", length = ncol(indexes))
   
   # Loop over each window and construct the DF
