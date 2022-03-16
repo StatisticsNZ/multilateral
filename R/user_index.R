@@ -1,4 +1,4 @@
-#' multilateral
+#' Multilateral price index calculation
 #'
 #' A flexible implementation of multilateral price index calculation for scanner
 #' data. This function can be applied on any dataset where key attributes

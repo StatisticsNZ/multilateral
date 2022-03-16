@@ -3,7 +3,7 @@
 \name{multilateral}
 \alias{multilateral}
 \alias{print.multilateral}
-\title{multilateral}
+\title{Multilateral price index calculation}
 \usage{
 multilateral(period, price, index_method, check_inputs_ind = TRUE, ...)
 
