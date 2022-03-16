@@ -58,8 +58,6 @@ TDH <- multilateral(period = synthetic_gfk$month_num,
                         index_method = "TDH")
 
 
-
-
 test_that("All ID based index calculations are as expected in latest period\n", {
   expect_equal(round(latest$index[latest$type=="TPD"],6), 1.526554)
   expect_equal(round(latest$index[latest$type=="GEKS-T"],6), 1.476020)
@@ -74,38 +72,4 @@ test_that("All feature based index calculations are as expected in latest period
   expect_equal(round(
     TDH$index$index[TDH$index$period==max(TDH$index$period)],6), 1.061368)
 
-})
-
-
-
-
-splice_methods <- c("geomean","fbew","fbmw")
-
-turvey_multilats <- lapply(splice_methods, function(splice_method){
-
-
-  temp_index <- multilateral(period = turvey$month,
-                             price = turvey$price,
-                             id = turvey$commodity,
-                             window_length = 13,
-                             quantity = turvey$quantity,
-                             splice_method = splice_method,
-                             index_method = "GK",
-                             num_cores = NULL,
-                             check_inputs_ind = T,
-                             matched = T)
-
-  temp_index$index$type <- splice_method
-
-  return(temp_index$index)
-})
-
-turvey_multilats <- do.call(rbind,turvey_multilats)
-latest <- turvey_multilats[turvey_multilats$period==max(turvey_multilats$period),]
-
-
-test_that("GK index with different splices are as expected in latest period\n", {
-  expect_equal(round(latest$index[latest$type=="geomean"],6), 1.481336)
-  expect_equal(round(latest$index[latest$type=="fbew"],6), 1.546201)
-  expect_equal(round(latest$index[latest$type=="fbmw"],6), 1.545595)
 })

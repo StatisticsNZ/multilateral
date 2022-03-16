@@ -44,7 +44,7 @@ include: id, quantity, weight, features, splice_method, window_length, matched, 
 num_cores
 
 \code{index_method} can be one of 'TPD', 'TDH',
-'GEKS-J','GEKS-F','GEKS-T','GEKS-IT', or 'GK' you can view the configuration
+'GEKS-J','GEKS-F','GEKS-T', or 'GEKS-IT' you can view the configuration
 file found under inst/config/index_method_config for more information
 
 \code{splice_method} can be one of 'half','window','movement','geomean', or
