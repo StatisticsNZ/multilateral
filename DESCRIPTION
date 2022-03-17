@@ -1,6 +1,6 @@
 Package: multilateral
 Type: Package
-Title: Generalised function to calculate a variety of multilateral price index methods
+Title: Generalised Function to Calculate a Variety of Multilateral Price Index Methods
 Version: 1.0.0
 Authors@R: c(person("Matthew", "Stansfield", 
                     email = "m.stansfield85@gmail.com",

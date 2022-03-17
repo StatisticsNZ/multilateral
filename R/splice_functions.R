@@ -5,6 +5,8 @@
 #' @param old_window vector of numeric values
 #' @param new_window vector of numeric values
 #' @param splice_method Method of splicing
+#' @return A numeric update factor of length 1, based on the \code{splice_method} provided.
+#' 
 #' @export
 splice_update <- function (old_window, new_window, splice_method){
 

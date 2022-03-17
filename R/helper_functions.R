@@ -215,7 +215,7 @@ check_inputs <- function(period,
   }
   
   if(!is.null(params$features)){
-    if(any(apply(params$features,2,is.character))){
+    if(any(sapply(params$features,is.character))){
       warning("Some of the features provided are characters, are you sure they aren't meant to be factors?")
     }
   }

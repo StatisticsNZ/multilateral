@@ -13,6 +13,9 @@ splice_update(old_window, new_window, splice_method)
 
 \item{splice_method}{Method of splicing}
 }
+\value{
+A numeric update factor of length 1, based on the \code{splice_method} provided.
+}
 \description{
 Calculate the splice factor
 }

@@ -11,7 +11,14 @@
 #' @param price vector of prices
 #' @param index_method The index method of choice
 #' @param check_inputs_ind logical, whether to check inputs or not
+#' @param verbose print additional information to console
 #' @param ... All other possible arguments, see details
+#'
+#' @return A list object of length 3 containing; 
+#' 
+#' \code{index}, a data.frame of the final spliced price index based on the method specified \cr
+#' \code{index_windows}, a data.frame containing each individual windows index before splicing \cr 
+#' \code{splice_detail}, a data.frame containing the breakdown of splice information\cr
 #'
 #' @details
 #' The function takes vectors for each of the inputs. It is important to note
@@ -33,7 +40,6 @@
 #' \code{splice_method} can be one of 'half','window','movement','geomean', or
 #' 'geomean_short' you can view the configuration file found under
 #' inst/config/splice_method_config for more information
-
 #'
 #' @examples
 #' tpd_index <- multilateral(period = turvey$month,
@@ -56,6 +62,7 @@ multilateral <-  function(period,
                           price,
                           index_method,
                           check_inputs_ind = TRUE,
+                          verbose = FALSE,
                           ...) {
   
   params <- list(...)
@@ -97,20 +104,20 @@ multilateral <-  function(period,
   window_st_period <- get_window_st_period(period_index = input_data$period_index,
                                            window_length = params$window_length)
   
-  cat("Number of windows:", length(window_st_period), "\n")
+  if(verbose){cat("Number of windows:", length(window_st_period), "\n")}
 
   num_windows <- length(window_st_period)
   
-  pb <- txtProgressBar(min = 0, max = length(window_st_period), style = 3)
+  if(verbose){pb <- txtProgressBar(min = 0, max = length(window_st_period), style = 3)}
   
   if (!is.null(params$num_cores)) {
     
-    cat(sprintf("\nInitialising %s cores for parallelisation\n",params$num_cores))
+    if(verbose){cat(sprintf("\nInitialising %s cores for parallelisation\n",params$num_cores))}
     
     # Starting Parallel =======================================================
     clust <- makeCluster(params$num_cores)
     
-    cat("Calculating across cores...\n")
+    if(verbose){cat("Calculating across cores...\n")}
     
     indexes <- parLapply(clust, 1:length(window_st_period), function(i){
       index_model(st_period = window_st_period[i],
@@ -130,7 +137,7 @@ multilateral <-  function(period,
     
     indexes <- lapply(1:length(window_st_period),
                       function(i){
-                        setTxtProgressBar(pb, i)
+                        if(verbose){setTxtProgressBar(pb, i)}
                         
                         index_model(st_period = window_st_period[i],
                                     input_data = input_data,
@@ -143,13 +150,12 @@ multilateral <-  function(period,
     
   }
   
-  close(pb)
-  
+  if(verbose){close(pb)}
   
   # Convert indexes from a list of data.frames to a wide dataframe
   indexes <- as.data.frame(indexes)
   
-  cat("\nwindow calculations complete. Splicing results together\n")
+  if(verbose){cat("\nwindow calculations complete. Splicing results together\n")}
   
   # index_list is a list of each window's fixed effects index
   index_list <- get_index_list (indexes = indexes,

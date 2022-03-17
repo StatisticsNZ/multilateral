@@ -9,6 +9,8 @@ R CMD check succeeded
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* More descriptive Title
+* Caps on title
 
-* Expanded description including reference to paper on methodology.
+* added \value to multiple functions .Rd file
+
+* introduced verbose argument to manage print/cat to console

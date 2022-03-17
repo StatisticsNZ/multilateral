@@ -5,7 +5,14 @@
 \alias{print.multilateral}
 \title{Multilateral price index calculation}
 \usage{
-multilateral(period, price, index_method, check_inputs_ind = TRUE, ...)
+multilateral(
+  period,
+  price,
+  index_method,
+  check_inputs_ind = TRUE,
+  verbose = FALSE,
+  ...
+)
 
 \method{print}{multilateral}(x, ...)
 }
@@ -19,9 +26,18 @@ NOTE: \code{period} must be of class Date or numeric.}
 
 \item{check_inputs_ind}{logical, whether to check inputs or not}
 
+\item{verbose}{print additional information to console}
+
 \item{...}{All other possible arguments, see details}
 
 \item{x}{multilateral class object}
+}
+\value{
+A list object of length 3 containing; 
+
+\code{index}, a data.frame of the final spliced price index based on the method specified \cr
+\code{index_windows}, a data.frame containing each individual windows index before splicing \cr 
+\code{splice_detail}, a data.frame containing the breakdown of splice information\cr
 }
 \description{
 A flexible implementation of multilateral price index calculation for scanner
