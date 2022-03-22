@@ -2,7 +2,7 @@
 #'
 #' The GEKS method is the product of many bilateral comparisons that maximises
 #' the number of paired price points while being free of chain drift. The GEKS
-#' has the following variations 'GEKS-F', 'GEKS-T','GEKS-J', 'GEKS-IT', 'GEKS-L','GEKS-P'
+#' has the following variations 'GEKS-F', 'GEKS-T','GEKS-J', 'GEKS-IT'
 #' @keywords internal
 GEKS <- function(input_data,
                  index_method,
@@ -117,9 +117,7 @@ GEKS_w <- function(input_data,
                  'GEKS-F' = {pindices[j,k] <- fisher_t(p0,p1,q0,q1)},
                  'GEKS-T' = {pindices[j,k] <- tornqvist_t(p0,p1,q0,q1)},
                  'GEKS-IT' = {pindices[j,k] <- IT_t(p0,p1,q0,q1,f0,f1,id0,id1)},
-                 'GEKS-J' = {pindices[j,k] <- jevons_t(p0,p1)},
-                 'GEKS-L' = {pindices[j,k] <- fixed_t(p0,p1,q0)},
-                 'GEKS-P' = {pindices[j,k] <- fixed_t(p0,p1,q1)})
+                 'GEKS-J' = {pindices[j,k] <- jevons_t(p0,p1)})
         }
         
       }

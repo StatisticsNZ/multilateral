@@ -70,34 +70,6 @@ GEKS-F:
   requires_weight: no
   can_restrict_to_matched_sample: yes
   
-GEKS-L:
-  name: "GEKS Layspeyres"
-  description: >
-    GEKS Layspeyres (GEKS-L)
-
-    The GEKS method is the product of many bilateral comparisons that maximises the number of paired price points while being free of chain drift.
-    The GEKS-L is a variation of the GEKS that uses a bilateral Layspeyres index for all bilateral index calculations.
-
-  requires_id: yes
-  requires_features: no
-  requires_quantity: yes
-  requires_weight: no
-  can_restrict_to_matched_sample: yes
-  
-GEKS-P:
-  name: "GEKS Paasche"
-  description: >
-    GEKS Paasche (GEKS-P)
-
-    The GEKS method is the product of many bilateral comparisons that maximises the number of paired price points while being free of chain drift.
-    The GEKS-P is a variation of the GEKS that uses a bilateral Paasche index for all bilateral index calculations.
-
-  requires_id: yes
-  requires_features: no
-  requires_quantity: yes
-  requires_weight: no
-  can_restrict_to_matched_sample: yes
-
 GEKS-IT:
   name: "GEKS Imputation Tornqvist"
   description: >
