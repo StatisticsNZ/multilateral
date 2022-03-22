@@ -242,8 +242,10 @@ TDH <- function(input_data){
   #Even though the data as a whole may have all characteristics with more than one level
   #In a given window this criteria may fail. To catch this it checks the number of levels
   #for each characteristic, if it is equal to one it will be removed.
-  input_data[,which(sapply(input_data,nlevels)<=1&sapply(input_data,is.factor))] <- NULL #Final check of factors with 1 or 0 level(s)
-  
+  cols_to_drop <- which(sapply(input_data,nlevels)<=1&sapply(input_data,is.factor))
+  if(length(cols_to_drop)!=0){
+  input_data[,cols_to_drop] <- NULL #Final check of factors with 1 or 0 level(s)
+  }
   # Run the regression
   all_coefs <-  coef(lm(logprice ~ timefact + . - price - period_index - period - weight,
                         weights = weight,
