@@ -17,6 +17,10 @@ GEKS <- function(input_data,
   #Rebase period
   input_data[,"period_index":=fmatch(period_index, unique(period_index))]
   
+  #Must sort as bilateral assumes p0 and p1 vectors correlate to same product
+  sortcol <-c("period_index","id")
+  setorderv(input_data, sortcol)
+  
   tempGEK <- GEKS_w(input_data,
                     index_method,
                     matched = matched,
@@ -66,7 +70,6 @@ GEKS_w <- function(input_data,
   # for every period in the window...
   for(j in 1:n){
     
-    
     # for every period in the window...
     for(k in 1:n){
       # if j=k then the index is 1
@@ -112,7 +115,6 @@ GEKS_w <- function(input_data,
             
           }
           # calculate the price index for 'base' period j and 'next' period k
-          # browser()
           switch(index_method,
                  'GEKS-F' = {pindices[j,k] <- fisher_t(p0,p1,q0,q1)},
                  'GEKS-T' = {pindices[j,k] <- tornqvist_t(p0,p1,q0,q1)},
