@@ -19,6 +19,8 @@ knitr::opts_chunk$set(
   <!-- badges: start -->
 
   [![R build status](https://github.com/MjStansfi/multilateral/workflows/R-CMD-check/badge.svg)](https://github.com/MjStansfi/multilateral/actions)
+  
+  [![CRAN](https://www.r-pkg.org/badges/version/multilateral)](https://www.r-pkg.org/badges/version/multilateral)
 
   <!-- badges: end -->
 

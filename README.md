@@ -6,6 +6,8 @@
 [![R build
 status](https://github.com/MjStansfi/multilateral/workflows/R-CMD-check/badge.svg)](https://github.com/MjStansfi/multilateral/actions)
 
+[![CRAN](https://www.r-pkg.org/badges/version/multilateral)](https://www.r-pkg.org/badges/version/multilateral)
+
 <!-- badges: end -->
 
 ## Overview
@@ -98,7 +100,6 @@ were spliced. Below shows how you could (roughly) visualise this data
 
 ``` r
 library(dplyr)
-#> Warning: package 'dplyr' was built under R version 4.0.5
 #> 
 #> Attaching package: 'dplyr'
 #> The following objects are masked from 'package:stats':
