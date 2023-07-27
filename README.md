@@ -27,7 +27,7 @@ package](https://github.com/grahamjwhite/IndexNumR).
 ## Installation
 
 ``` r
-devtools::install_github("MjStansfi/multilateral")
+devtools::install_github("StatisticsNZ/multilateral")
 
 library(multilateral)
 ```
